@@ -1,15 +1,12 @@
 <div
   id="modal-overlay"
-  class="hidden absolute flex justify-center items-center w-full h-full z-[1000] top-0"
+  class="hidden fixed flex justify-center items-center w-full h-full z-[1000] top-0"
   style="background-color: rgba(0, 0, 0, 0.5);">
 
 
   <div class="fixed pt-5 px-5 pb-8 rounded-md w-[300px] md:w-[600px] text-center shadow-lg bg-white" style="top: 50%; transform:translateY(-50%);">
     <!-- Close Button -->
-    <button
-      onClick="closeOverlay();"
-      id="close-overlay"
-      class="absolute end-[5px] top-[5px] p-1">
+    <button id="close-overlay" class="absolute end-[5px] top-[5px] p-1">
       <span class="sr-only">Close</span>
       <svg
         xmlns="http://www.w3.org/2000/svg"
@@ -22,6 +19,22 @@
           clip-rule="evenodd" />
       </svg>
     </button>
+
+    <!-- Not Logged In Modal -->
+    <div id="default-login-modal" class="flex flex-col items-center py-5">
+      <div class="mb-4 text-center">
+        <h3 class="mt-[25px] mb-[16px] text-[32px] font-normal fontTermina text-gray-900">Join Arise</h3>
+        <p class="mb-[40px] max-w-[450px] text-[14px] font-normal fontTermina ">
+          Subscribe to join our loyalty program!
+        </p>
+      </div>
+      <div class="flex justify-between mx-auto">
+        <button id="redirect-trigger" class="w-max mx-2 flex items-center px-6 py-[7.5px] md:py-[9.5px] 2xl:py-[8px] text-[12px] xl:text-[14px] leading-[1.4] tracking-[0.08em] font-semibold uppercase text-[005850] border border-[#005850] hover:text-white hover:bg-[#005850] rounded-full transition-colors duration-500">I have a subscription</button>
+        <a href="{{ shop.url }}" class="w-max mx-2 flex items-center px-6 py-[7.5px] md:py-[9.5px] 2xl:py-[8px] text-[12px] xl:text-[14px] leading-[1.4] tracking-[0.08em] font-semibold uppercase bg-[#005850] text-white border border-[#005850] hover:text-[#005850] hover:bg-white rounded-full transition-colors duration-500">create subscription</a>
+
+      </div>
+    </div>
+
     <!-- Logged In But Not Active Sub -->
     <div id="incative-sub-modal" class="hidden flex flex-col items-center py-5">
       <div class="text-center">
@@ -37,19 +50,23 @@
       </div>
     </div>
 
-    <!-- Not Logged In Modal -->
-    <div id="default-login-modal" class="flex flex-col items-center py-5">
+    <!-- Redirect Modal -->
+    <div id="countdown-redirect-modal" class="flex flex-col items-center py-5 hidden">
       <div class="mb-4 text-center">
-        <h3 class="mt-[25px] mb-[16px] text-[32px] font-normal fontTermina text-gray-900">Join Arise</h3>
+        <h3 class="mt-[25px] mb-[16px] text-[32px] font-normal fontTermina text-gray-900">Redirecting You...</h3>
         <p class="mb-[40px] max-w-[450px] text-[14px] font-normal fontTermina ">
-          Subscribe to join our loyalty program!
+          Members can access Arise through the sign In page.
         </p>
       </div>
-      <div class="flex justify-between mx-auto">
-        <a href="{{ shop.url }}/account" class="w-max mx-2 flex items-center px-6 py-[7.5px] md:py-[9.5px] 2xl:py-[8px] text-[12px] xl:text-[14px] leading-[1.4] tracking-[0.08em] font-semibold uppercase text-[005850] border border-[#005850] hover:text-white hover:bg-[#005850] rounded-full transition-colors duration-500">I have a subscription</a>
-        <a href="{{ shop.url }}" class="w-max mx-2 flex items-center px-6 py-[7.5px] md:py-[9.5px] 2xl:py-[8px] text-[12px] xl:text-[14px] leading-[1.4] tracking-[0.08em] font-semibold uppercase bg-[#005850] text-white border border-[#005850] hover:text-[#005850] hover:bg-white rounded-full transition-colors duration-500">create subscription</a>
+      <div id="countdown-clock">
+        <p class="mb-[10px] text-[14px]">Redirecting you in
+          <span id="countdown-display"></span>
+        </p>
+        <a href="{{ shop.url }}/account" class="w-max mx-2 flex items-center px-6 py-[7.5px] md:py-[9.5px] 2xl:py-[8px] text-[12px] xl:text-[14px] leading-[1.4] tracking-[0.08em] font-semibold uppercase bg-[#005850] text-white border border-[#005850] hover:text-[#005850] hover:bg-white rounded-full transition-colors duration-500">Access Arise Now</a>
+
       </div>
     </div>
+
   </div>
 </div>
 
@@ -57,6 +74,10 @@
 
   const modalOverlay = document.getElementById('modal-overlay');
   const closeOverlayBtn = document.getElementById('close-overlay');
+  const defaultModal = document.getElementById('default-login-modal');
+  const redirectTrigger = document.getElementById('redirect-trigger');
+  const redirectModal = document.getElementById('countdown-redirect-modal');
+  const countdownDisplay = document.getElementById('countdown-display')
 
   function spawnOverlay() {
     document.body.classList.add('relative');
@@ -64,11 +85,47 @@
     modalOverlay.classList.toggle('hidden');
   };
 
-  function closeOverlay() {
+  closeOverlayBtn.addEventListener('click', (event) => {
     document.body.classList.remove('relative');
     document.body.style.overflow = 'auto';
     modalOverlay.classList.toggle('hidden');
-  };
+  });
 
-  console.log('🍑');
+  redirectTrigger.addEventListener('click', (event) => {
+    defaultModal.classList.add('hidden');
+    redirectModal.classList.toggle('hidden');
+
+    console.log('clicked', closeOverlayBtn);
+
+    let countdownTime = 10;
+    const countdown = setInterval(function() {
+      countdownDisplay.innerHTML = countdownTime;
+      countdownTime--;
+      console.log(countdownTime);
+      if (countdownTime === 1) {
+        console.log('redirecting...')
+      }
+      if (countdownTime === 0) {
+        function accountRedirect() {
+          window.location.href = 'https://cymbiotika.com/pages/create-your-bundle';
+        }
+        accountRedirect();
+      }
+
+      closeOverlayBtn.addEventListener('click', (event) => {
+        console.log(countdownTime);
+        function clearCountdown() {
+          clearInterval(countdown);
+        }
+        clearCountdown();
+
+        countdownTime = 10;
+
+
+        defaultModal.classList.remove('hidden');
+        redirectModal.classList.add('hidden');
+      });
+    }, 1000);
+    countdown();
+  });
 </script>
