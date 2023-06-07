@@ -21,7 +21,7 @@
     return imageDict; // ex [['Plant Protein', 'https://cdn.shopify.com/s/files/1/1824/8017/files/26May22_Quiz_PlantProtein.png?v=1653589839'], ...]
   }
 
- 
+
 let products = []
 {%- assign collection = collections['cymbiotika_bundle_recharge'] -%}
 {% for product in collection.products %}
@@ -66,6 +66,8 @@ products.forEach(p => p.image = imageDict[p.productId]);
   })
  // const order_count = {{ customer.orders_count }}
   console.log("orders", orders)
+  const customerName = `{{ customer.first_name }}`
+  console.log('customerName', customerName)
  // console.log(“order_count”, order_count)
 </script>
 <script
@@ -76,7 +78,7 @@ products.forEach(p => p.image = imageDict[p.productId]);
 
 
 {% if customer %}
-  
+
   <div id="cym-portal-navbar" class="flex flex-col gap-y-3 md:gap-y-4 max-w-screen-2xl mx-auto px-5 md:px-9 2xl:px-16">
     <div class="font-ivy text-[22px] md:text-[26px]">Hey, {{ customer.first_name }}!</div>
     <div class="cym-portal-max-width pb-5 md:pb-[26px] leading-none overflow-x-auto flex gap-x-5">
@@ -172,13 +174,13 @@ products.forEach(p => p.image = imageDict[p.productId]);
         Join Us On This Journey
       </h3>
       <h2 class="font-ivy italic text-[36px] mb-[36px]">Let's rise together</h2>
-      <a href="/account/register" class="register-link w-max mx-auto flex items-center px-6 py-[7.5px] md:py-[9.5px] 2xl:py-[8px] text-[12px] xl:text-[14px] leading-[1.4] tracking-[0.08em] uppercase bg-[#005850] text-white border border-[#005850] hover:text-[#005850] hover:bg-white rounded-full transition-colors duration-500 font-300 fontTermina">
+      <button onClick="spawnOverlay();" class="register-link w-max mx-auto flex items-center px-6 py-[7.5px] md:py-[9.5px] 2xl:py-[8px] text-[12px] xl:text-[14px] leading-[1.4] tracking-[0.08em] uppercase bg-[#005850] text-white border border-[#005850] hover:text-[#005850] hover:bg-white rounded-full transition-colors duration-500 font-300 fontTermina">
         Sign Up
         <svg
           class="chevron-right ml-[14px] transition-colors duration-500"
           xmlns="http://www.w3.org/2000/svg"
           viewBox="0 0 320 512"><!--! Font Awesome Pro 6.4.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2023 Fonticons, Inc. --><path d="M310.6 233.4c12.5 12.5 12.5 32.8 0 45.3l-192 192c-12.5 12.5-32.8 12.5-45.3 0s-12.5-32.8 0-45.3L242.7 256 73.4 86.6c-12.5-12.5-12.5-32.8 0-45.3s32.8-12.5 45.3 0l192 192z" /></svg>
-      </a>
+      </button>
     </div>
 
   </div>
@@ -613,7 +615,7 @@ products.forEach(p => p.image = imageDict[p.productId]);
                   stroke-linecap="round"
                   stroke-linejoin="round" />
               </svg>
-              <p class="py-2.5 text-xs leading-[1.4] -tracking-[0.02em]">Anniversary $25 gift cards</p>
+              <p class="py-2.5 text-xs leading-[1.4] -tracking-[0.02em]">Anniversary $25 gift cards 1</p>
             </div>
 
             <div class="flex border-b border-[#909090]">
@@ -767,7 +769,7 @@ products.forEach(p => p.image = imageDict[p.productId]);
               <p class="py-2.5 text-xs leading-[1.4] -tracking-[0.02em]">Free shipping on domestic orders</p>
             </div>
 
-            <div class="flex border-b border-[#909090]">
+            <div class="flex border-b border-[#909090] items-center">
               <svg
                 class="ml-2.5 mt-[0.65625rem] mr-3"
                 width="16"
@@ -782,7 +784,44 @@ products.forEach(p => p.image = imageDict[p.productId]);
                   stroke-linecap="round"
                   stroke-linejoin="round" />
               </svg>
-              <p class="py-2.5 text-xs leading-[1.4] -tracking-[0.02em]">Anniversary $25 gift cards</p>
+              <p class="py-2.5 text-xs leading-[1.4] -tracking-[0.02em]">Anniversary $25 gift cards 2</p>
+              <svg
+                width="17"
+                height="17"
+                viewBox="0 0 17 17"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
+                class="anniversary-tooltip ml-2">
+                <g clip-path="url(#clip0_7_50717)">
+                  <path
+                    d="M8.42008 15.3573C12.102 15.3573 15.0868 12.3725 15.0868 8.69059C15.0868 5.00869 12.102 2.02393 8.42008 2.02393C4.73819 2.02393 1.75342 5.00869 1.75342 8.69059C1.75342 12.3725 4.73819 15.3573 8.42008 15.3573Z"
+                    stroke="#767676"
+                    stroke-width="1.5"
+                    stroke-linecap="round"
+                    stroke-linejoin="round" />
+                  <path
+                    d="M8.41992 11.3573V8.69067"
+                    stroke="#767676"
+                    stroke-width="1.5"
+                    stroke-linecap="round"
+                    stroke-linejoin="round" />
+                  <path
+                    d="M8.41992 6.02393H8.42659"
+                    stroke="#767676"
+                    stroke-width="1.5"
+                    stroke-linecap="round"
+                    stroke-linejoin="round" />
+                </g>
+                <defs>
+                  <clipPath id="clip0_7_50717">
+                    <rect
+                      width="16"
+                      height="16"
+                      fill="white"
+                      transform="translate(0.419922 0.690674)" />
+                  </clipPath>
+                </defs>
+              </svg>
             </div>
 
             <div class="flex border-b border-[#909090]">
@@ -1233,7 +1272,7 @@ products.forEach(p => p.image = imageDict[p.productId]);
             viewBox="0 0 17 17"
             fill="none"
             xmlns="http://www.w3.org/2000/svg"
-            class="more-info ml-2">
+            class="anniversary-tooltip ml-2">
             <g clip-path="url(#clip0_7_50717)">
               <path
                 d="M8.42008 15.3573C12.102 15.3573 15.0868 12.3725 15.0868 8.69059C15.0868 5.00869 12.102 2.02393 8.42008 2.02393C4.73819 2.02393 1.75342 5.00869 1.75342 8.69059C1.75342 12.3725 4.73819 15.3573 8.42008 15.3573Z"
@@ -1836,7 +1875,7 @@ products.forEach(p => p.image = imageDict[p.productId]);
   </div>
 
   {{ DID YOU KNOW }}
-  {% comment %} 
+  {% comment %}
   <div class="bg-[#EBF2F1] px-5 py-10 md:p-10 md:pb-16 2xl:px-0 2xl:pt-16 2xl:pb-20 text-center">
 
     {{ SUN }}
@@ -1985,14 +2024,14 @@ products.forEach(p => p.image = imageDict[p.productId]);
             As your health journey progresses, you'll unlock new tiers with even more rewards and benefits. Each tier comes with a token that unlocks new and exciting experiences and valuable savings. Additionally, you can participate in Arise wellness challenges to earn even more tokens.
             <span class="block h-3 2xl:h-5"></span>
           </p>
-          
+
           <p class="pl-5 text-xs xl:text-base leading-[1.6] -tracking-[0.02em] overflow-hidden">
             <a href="https://cymbiotika.com/pages/introducing-arise" class="font-bold underline">
             Learn more </a>
             about Arise.
             <span class="block h-3 2xl:h-5"></span>
           </p>
-          
+
         </div>
 
         <div class="al_acc border-b border-[#D9D9D9] ">
@@ -2070,7 +2109,7 @@ products.forEach(p => p.image = imageDict[p.productId]);
 
 
   {{ GET 2 THE ROOT `kid cudi or the nbhd?` }}`
-  {% comment %} 
+  {% comment %}
   <div class="bg-[#EBF2F1] py-10 md:p-10 md:pb-16 2xl:pt-16 2xl:pb-20 text-center">
 
     <h5 class="mb-3 md:mb-7 font-ivy text-[20px] md:text-[22px] xl:text-[26px] -tracking-[0.02em] leading-[1.6] font-[400]">
@@ -2126,11 +2165,11 @@ products.forEach(p => p.image = imageDict[p.productId]);
 
 
   const toggleFaqView = () => {
-    
+
     console.log('click click');
-    
+
     const hideFaqToggle = document.querySelectorAll('.faqs-hide');
-    
+
     const notEnrolledHeader = document.querySelector('.hero-header')
     const ariseApp = document
       .getElementById('arise-app')
@@ -2151,7 +2190,7 @@ products.forEach(p => p.image = imageDict[p.productId]);
   if (ariseApp) {
     ariseApp.classList.toggle('hidden')
   }
-  
+
   setTimeout(() => {
     window.scroll({
       top: 0,
@@ -2191,72 +2230,80 @@ if (faqBack) {
 }
 
 const allPrettyText = {
-
-    Member: {
-        unearned: 'Create a Subscription.',
-        earned: 'creating a subscription.',
-        ctaText: ''
-    },
-    Insider: {
-        unearned: 'continue your subscription for 3 months.',
-        earned: 'subscribing for 3 months consecutively.',
-        ctaText: ''
-    },
-    Elite: {
-        unearned: 'continue your subscription for 4 months.',
-        earned: 'subscribing for 4 months consecutively.',
-        ctaText: ''
-    },
-    VIP: {
-        unearned: 'continue your subscription for 6 months.',
-        earned: 'subscribing for 6 months consecutively.',
-        ctaText: ''
-    },
-    Adventurer: {
-        unearned: 'Go on an outdoor walk or a hike.',
-        earned: 'taking a hike or walk outside in July, 2023.',
-        ctaText: 'Take a walk '
-    },
-    'HBD!': {
-        unearned: 'Add your birthday and receive a free birthday gift from us, just for you.',
-        earned: 'filling in your birthday. We look forward to helping you celebrate!',
-        ctaText: 'ADD BIRTHDAY'
-    },
-    'News-Savvy': {
-        unearned: 'Sign up for emails and texts.',
-        earned: 'signing up for emails and SMS.',
-        ctaText: 'SIGN UP'
-    },
-    Experimenter: {
-        unearned: 'Add a new product to your subscription to further your wellness journey.',
-        earned: 'subscribing to a product you had not yet tried.',
-        ctaText: 'ADD A PRODUCT'
-    },
-    'Insta-Fan': {
-        unearned: 'Follow us on Instagram.',
-        earned: 'following us on Instagram',
-        ctaText: 'FOLLOW US'
-    },
-    'Social Expert': {
-        unearned: 'Repost a Cymbiotika post or reel on Instagram',
-        earned: 'reposting Cymbiotika content on Instagram.',
-        ctaText: 'REPOST NOW'
-    },
-    'Contributor': {
-        unearned: 'Take our survey.',
-        earned: 'completing our survey. Thanks for the feedback!',
-        ctaText: 'TAKE OUR SURVEY'
-    },
-    'Dream Team': {
-        unearned: 'Refer a friend through our referral program',
-        earned: 'referring a friend.',
-        ctaText: 'REFER A FRIEND'
-    },
-    'Commentator': {
-        unearned: 'Leave a review on one of our products!',
-        earned: 'by leaving a review for one of our products..',
-        ctaText: 'LEAVE A REVIEW'
-    },
+  Member: {
+      unearned: 'Create a Subscription.',
+      earned: 'creating a subscription.',
+      ctaText: ''
+  },
+  Insider: {
+      unearned: 'continue your subscription for 3 months.',
+      earned: 'subscribing for 3 months consecutively.',
+      ctaText: ''
+  },
+  Elite: {
+      unearned: 'continue your subscription for 4 months.',
+      earned: 'subscribing for 4 months consecutively.',
+      ctaText: ''
+  },
+  VIP: {
+      unearned: 'continue your subscription for 6 months.',
+      earned: 'subscribing for 6 months consecutively.',
+      ctaText: ''
+  },
+  'HBD!': {
+      unearned: 'Add your birthday and receive a free birthday gift from us, just for you.',
+      earned: 'filling in your birthday. We look forward to helping you celebrate!',
+      ctaText: 'ADD BIRTHDAY',
+      ctaLink: ''
+  },
+  'News-Savvy': {
+      unearned: 'Sign up for emails and texts.',
+      earned: 'signing up for emails and SMS.',
+      ctaText: 'SIGN UP',
+      ctaLink: ''
+  },
+  Experimenter: {
+      unearned: 'Add a new product to your subscription to further your wellness journey.',
+      earned: 'subscribing to a product you had not yet tried.',
+      ctaText: 'ADD A PRODUCT',
+      ctaLink: ''
+  },
+  'Insta-Fan': {
+      unearned: 'Follow us on Instagram.',
+      earned: 'following us on Instagram',
+      ctaText: 'FOLLOW US',
+      ctaLink: 'https://www.instagram.com/cymbiotika/'
+  },
+  'Social Expert': {
+      unearned: 'Repost a Cymbiotika post or reel on Instagram',
+      earned: 'reposting Cymbiotika content on Instagram.',
+      ctaText: 'REPOST NOW',
+      ctaLink: 'https://www.instagram.com/cymbiotika/'
+  },
+  'Contributor': {
+      unearned: 'Take our survey.',
+      earned: 'completing our survey. Thanks for the feedback!',
+      ctaText: 'TAKE OUR SURVEY',
+      ctaLink: 'https://app.knocommerce.com/surveys/e615c3d4-a0f7-4334-85c5-101dc780df1e'
+  },
+  'Dream Team': {
+      unearned: 'Refer a friend through our referral program',
+      earned: 'referring a friend.',
+      ctaText: 'REFER A FRIEND',
+      ctaLink: 'tbd - hannah will get back to me'
+  },
+  'Commentator': {
+      unearned: 'Leave a review on one of our products!',
+      earned: 'Write a post or leave a comment in the community forum!',
+      ctaText: 'LEAVE A REVIEW',
+      ctaLink: ''
+  },
+  'Spectator': {
+      unearned: 'Join a Cymbiotika.com livestream and learn about our newest products!',
+      earned: 'tuning into one of our live streams.',
+      ctaText: 'VIEW LIVESTREAMS',
+      ctaLink: 'https://cymbiotika.com/pages/live'
+  },
 }
 
 
@@ -2554,5 +2601,16 @@ const allPrettyText = {
 
 <script src="https://cdn.tailwindcss.com"></script>
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@8/swiper-bundle.min.css" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/tippy.js/6.3.7/themes/light-border.min.css" integrity="sha512-DiG+GczLaoJczcpFjhVy4sWA1rheh0I6zmlEc+ax7vrq2y/qTg80RtxDOueLcwBrC80IsiQapIgTi++lcGHPLg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 
 <script src="https://cdn.jsdelivr.net/npm/swiper@8/swiper-bundle.min.js"></script>
+
+<!-- Tippy CDN -->
+<script src="https://unpkg.com/@popperjs/core@2"></script>
+<script src="https://unpkg.com/tippy.js@6"></script>
+<script>
+  tippy('.anniversary-tooltip', {
+    theme: 'light-border',
+    content: ' Anniversary gift cards will be given 1 year from your first purchase!',
+  });
+</script>
