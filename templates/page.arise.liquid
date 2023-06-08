@@ -64,11 +64,14 @@ products.forEach(p => p.image = imageDict[p.productId]);
     })
     el.line_items = lineItems
   })
- // const order_count = {{ customer.orders_count }}
-  console.log("orders", orders)
+  // console.log("orders", orders)
   const customerName = `{{ customer.first_name }}`
-  console.log('customerName', customerName)
- // console.log(“order_count”, order_count)
+  // console.log('customerName', customerName)
+
+  const setPortalDestination = view => {
+    sessionStorage.setItem("from-arise", view);
+  }
+
 </script>
 <script
   src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js"
@@ -84,23 +87,33 @@ products.forEach(p => p.image = imageDict[p.productId]);
     <div class="cym-portal-max-width pb-5 md:pb-[26px] leading-none overflow-x-auto flex gap-x-5">
 
       <div class="hover-underline">
-        <a href="/tools/recurring/login?redirect=customer_portal%2Fsubscriptions" class="font-bold leading-none text-xs tracking-wide truncate uppercase">
-          Your Bundles
+        <a href="/tools/recurring/login?redirect=customer_portal%2Fsubscriptions" onclick="setPortalDestination('dashboard')" class="font-bold leading-none text-xs tracking-wide truncate uppercase">
+          Dashboard
+        </a>
+      </div>
+      <div class="hover-underline">
+        <a href="/tools/recurring/login?redirect=customer_portal%2Fsubscriptions" onclick="setPortalDestination('bundles')" class="font-bold leading-none text-xs tracking-wide truncate uppercase">
+          Subscriptions
         </a>
       </div>
       <div>
         <a href="/pages/arise" class="font-bold leading-none text-xs tracking-wide truncate underline-offset-1 underline underline-offset-4 uppercase text-[#4D5E35]">
-          Your Rewards
+          Arise Rewards
         </a>
       </div>
       <div class="hover-underline">
-        <a href="/pages/explore-cymbiotika" class="font-bold leading-none text-xs tracking-wide truncate uppercase">
-          Explore
-        </a>
-      </div>
-      <div class="hover-underline">
-        <a href="/tools/recurring/login?redirect=customer_portal%2Forders" class="font-bold leading-none text-xs tracking-wide truncate uppercase">
+        <a href="/tools/recurring/login?redirect=customer_portal%2Fsubscriptions" onclick="setPortalDestination('orderhistory')" class="font-bold leading-none text-xs tracking-wide truncate uppercase">
           Order History
+        </a>
+      </div>
+      <div class="">
+        <a href="#" class="font-bold leading-none text-xs tracking-wide truncate uppercase cursor-not-allowed text-[#D9D9D9]">
+          Account
+        </a>
+      </div>
+      <div class="hover-underline">
+        <a href="/pages/contact-us" class="font-bold leading-none text-xs tracking-wide truncate uppercase">
+          Help
         </a>
       </div>
 
