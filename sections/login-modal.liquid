@@ -30,7 +30,7 @@
       </div>
       <div class="flex justify-between mx-auto">
         <button id="redirect-trigger" class="w-max mx-2 flex items-center px-6 py-[7.5px] md:py-[9.5px] 2xl:py-[8px] text-[12px] xl:text-[14px] leading-[1.4] tracking-[0.08em] font-semibold uppercase text-[005850] border border-[#005850] hover:text-white hover:bg-[#005850] rounded-full transition-colors duration-500">I have a subscription</button>
-        <a href="{{ shop.url }}" class="w-max mx-2 flex items-center px-6 py-[7.5px] md:py-[9.5px] 2xl:py-[8px] text-[12px] xl:text-[14px] leading-[1.4] tracking-[0.08em] font-semibold uppercase bg-[#005850] text-white border border-[#005850] hover:text-[#005850] hover:bg-white rounded-full transition-colors duration-500">create subscription</a>
+        <a href="{{ shop.url }}/pages/create-your-bundle" class="w-max mx-2 flex items-center px-6 py-[7.5px] md:py-[9.5px] 2xl:py-[8px] text-[12px] xl:text-[14px] leading-[1.4] tracking-[0.08em] font-semibold uppercase bg-[#005850] text-white border border-[#005850] hover:text-[#005850] hover:bg-white rounded-full transition-colors duration-500">create subscription</a>
 
       </div>
     </div>
@@ -58,7 +58,7 @@
           Members can access Arise through the sign In page.
         </p>
       </div>
-      <div id="countdown-clock">
+      <div id="countdown-clock" class="hidden">
         <p class="mb-[10px] text-[14px]">Redirecting you in
           <span id="countdown-display"></span>
         </p>
@@ -77,6 +77,7 @@
   const defaultModal = document.getElementById('default-login-modal');
   const redirectTrigger = document.getElementById('redirect-trigger');
   const redirectModal = document.getElementById('countdown-redirect-modal');
+  const countdownClock = document.getElementById('countdown-clock');
   const countdownDisplay = document.getElementById('countdown-display')
 
   function spawnOverlay() {
@@ -95,9 +96,11 @@
     defaultModal.classList.add('hidden');
     redirectModal.classList.toggle('hidden');
 
+// countdownClock.classList.toggle('hidden');
+
     console.log('clicked', closeOverlayBtn);
 
-    let countdownTime = 10;
+    let countdownTime = 5;
     const countdown = setInterval(function() {
       countdownDisplay.innerHTML = countdownTime;
       countdownTime--;
@@ -107,7 +110,7 @@
       }
       if (countdownTime === 0) {
         function accountRedirect() {
-          window.location.href = 'https://cymbiotika.com/pages/create-your-bundle';
+          window.location.href = 'https://cymbiotika.com/account';
         }
         accountRedirect();
       }
@@ -119,8 +122,7 @@
         }
         clearCountdown();
 
-        countdownTime = 10;
-
+        countdownTime = 5;
 
         defaultModal.classList.remove('hidden');
         redirectModal.classList.add('hidden');
