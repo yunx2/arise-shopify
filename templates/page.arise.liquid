@@ -21,7 +21,7 @@
     return imageDict; // ex [['Plant Protein', 'https://cdn.shopify.com/s/files/1/1824/8017/files/26May22_Quiz_PlantProtein.png?v=1653589839'], ...]
   }
 
- 
+
 let products = []
 {%- assign collection = collections['cymbiotika_bundle_recharge'] -%}
 {% for product in collection.products %}
@@ -64,9 +64,14 @@ products.forEach(p => p.image = imageDict[p.productId]);
     })
     el.line_items = lineItems
   })
- // const order_count = {{ customer.orders_count }}
-  console.log("orders", orders)
- // console.log(“order_count”, order_count)
+  // console.log("orders", orders)
+  const customerName = `{{ customer.first_name }}`
+  // console.log('customerName', customerName)
+
+  const setPortalDestination = view => {
+    sessionStorage.setItem("from-arise", view);
+  }
+
 </script>
 <script
   src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js"
@@ -76,29 +81,34 @@ products.forEach(p => p.image = imageDict[p.productId]);
 
 
 {% if customer %}
-  
+
   <div id="cym-portal-navbar" class="flex flex-col gap-y-3 md:gap-y-4 max-w-screen-2xl mx-auto px-5 md:px-9 2xl:px-16">
     <div class="font-ivy text-[22px] md:text-[26px]">Hey, {{ customer.first_name }}!</div>
     <div class="cym-portal-max-width pb-5 md:pb-[26px] leading-none overflow-x-auto flex gap-x-5">
 
       <div class="hover-underline">
-        <a href="/tools/recurring/login?redirect=customer_portal%2Fsubscriptions" class="font-bold leading-none text-xs tracking-wide truncate uppercase">
-          Your Bundles
+        <a href="/tools/recurring/login?redirect=customer_portal%2Fsubscriptions" onclick="setPortalDestination('dashboard')" class="font-medium leading-none text-xs -tracking-[0.02em] truncate uppercase fontTermina">
+          Dashboard
+        </a>
+      </div>
+      <div class="hover-underline">
+        <a href="/tools/recurring/login?redirect=customer_portal%2Fsubscriptions" onclick="setPortalDestination('bundles')" class="font-medium leading-none text-xs -tracking-[0.02em] truncate uppercase fontTermina">
+          Subscriptions
         </a>
       </div>
       <div>
-        <a href="/pages/arise" class="font-bold leading-none text-xs tracking-wide truncate underline-offset-1 underline underline-offset-4 uppercase text-[#4D5E35]">
-          Your Rewards
+        <a href="/pages/arise" class="font-medium leading-none text-xs -tracking-[0.02em] truncate underline underline-offset-4 uppercase text-[#697E47] fontTermina">
+          Arise Rewards
         </a>
       </div>
       <div class="hover-underline">
-        <a href="/pages/explore-cymbiotika" class="font-bold leading-none text-xs tracking-wide truncate uppercase">
-          Explore
-        </a>
-      </div>
-      <div class="hover-underline">
-        <a href="/tools/recurring/login?redirect=customer_portal%2Forders" class="font-bold leading-none text-xs tracking-wide truncate uppercase">
+        <a href="/tools/recurring/login?redirect=customer_portal%2Fsubscriptions" onclick="setPortalDestination('orderhistory')" class="font-medium leading-none text-xs -tracking-[0.02em] truncate uppercase fontTermina">
           Order History
+        </a>
+      </div>
+      <div class="hover-underline">
+        <a href="/pages/contact-us" class="font-medium leading-none text-xs -tracking-[0.02em] truncate uppercase fontTermina">
+          Help
         </a>
       </div>
 
@@ -172,13 +182,13 @@ products.forEach(p => p.image = imageDict[p.productId]);
         Join Us On This Journey
       </h3>
       <h2 class="font-ivy italic text-[36px] mb-[36px]">Let's rise together</h2>
-      <a href="/account/register" class="register-link w-max mx-auto flex items-center px-6 py-[7.5px] md:py-[9.5px] 2xl:py-[8px] text-[12px] xl:text-[14px] leading-[1.4] tracking-[0.08em] uppercase bg-[#005850] text-white border border-[#005850] hover:text-[#005850] hover:bg-white rounded-full transition-colors duration-500 font-300 fontTermina">
+      <button onClick="spawnOverlay();" class="register-link w-max mx-auto flex items-center px-6 py-[7.5px] md:py-[9.5px] 2xl:py-[8px] text-[12px] xl:text-[14px] leading-[1.4] tracking-[0.08em] uppercase bg-[#005850] text-white border border-[#005850] hover:text-[#005850] hover:bg-white rounded-full transition-colors duration-500 font-300 fontTermina">
         Sign Up
         <svg
           class="chevron-right ml-[14px] transition-colors duration-500"
           xmlns="http://www.w3.org/2000/svg"
           viewBox="0 0 320 512"><!--! Font Awesome Pro 6.4.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2023 Fonticons, Inc. --><path d="M310.6 233.4c12.5 12.5 12.5 32.8 0 45.3l-192 192c-12.5 12.5-32.8 12.5-45.3 0s-12.5-32.8 0-45.3L242.7 256 73.4 86.6c-12.5-12.5-12.5-32.8 0-45.3s32.8-12.5 45.3 0l192 192z" /></svg>
-      </a>
+      </button>
     </div>
 
   </div>
@@ -202,7 +212,7 @@ products.forEach(p => p.image = imageDict[p.productId]);
 
   <div class="max-w-screen-2xl mx-auto Zpx-5 md:px-9 2xl:px-16 pt-5 md:pt-10 text-center">
     {{ section title }}
-    <h1 class="mb-6 md:mb-7 2xl:mb-9 font-ivy text-[20px] md:text-[22px] xl:text-[26px] -tracking-[0.02em] leading-[1.6] font-[400]">
+    <h1 class="mb-6 md:mb-7 2xl:mb-9 font-ter text-[20px] md:text-[22px] xl:text-[26px] -tracking-[0.02em] leading-[1.6] font-[400]">
       How Arise Works
     </h1>
 
@@ -254,7 +264,7 @@ products.forEach(p => p.image = imageDict[p.productId]);
 
   </div>
   {% if customer %}
-      <div class="get-started-link mt-5 hidden">
+      <div class="get-started-link mt-[20px] md:mt-[40px] hidden">
         <button onClick="spawnOverlay();" class="register-link w-max mx-auto flex items-center px-6 py-[7.5px] md:py-[9.5px] 2xl:py-[8px] text-[12px] xl:text-[14px] leading-[1.4] tracking-[0.08em] uppercase bg-[#005850] text-white border border-[#005850] hover:text-[#005850] hover:bg-white rounded-full transition-colors duration-500 font-300 fontTermina">
             Get Started
           </button>
@@ -375,7 +385,9 @@ products.forEach(p => p.image = imageDict[p.productId]);
                   stroke-linecap="round"
                   stroke-linejoin="round" />
               </svg>
-              <p class="py-2.5 text-xs leading-[1.4] -tracking-[0.02em]">Access to community fourm</p>
+              <p class="py-2.5 text-xs leading-[1.4] -tracking-[0.02em]">Access to community forum <br class="mobile-linebreak">
+                <span class="italic text-[#767676]">(Coming soon!)</span>
+              </p>
             </div>
 
           </div>
@@ -485,9 +497,26 @@ products.forEach(p => p.image = imageDict[p.productId]);
                   stroke-linecap="round"
                   stroke-linejoin="round" />
               </svg>
-              <p class="py-2.5 text-xs leading-[1.4] -tracking-[0.02em]">Tier specific NFT badge</p>
+              <p class="py-2.5 text-xs leading-[1.4] -tracking-[0.02em]">Monthly wellness challenges</p>
             </div>
 
+            <div class="flex border-b border-[#909090]">
+              <svg
+                class="ml-2.5 mt-[0.65625rem] mr-3"
+                width="16"
+                height="16"
+                viewBox="0 0 16 16"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg">
+                <path
+                  d="M13.8334 4.5L6.50008 11.8333L3.16675 8.5"
+                  stroke="#005850"
+                  stroke-width="1.5"
+                  stroke-linecap="round"
+                  stroke-linejoin="round" />
+              </svg>
+              <p class="py-2.5 text-xs leading-[1.4] -tracking-[0.02em]">Tier specific token</p>
+            </div>
             <div class="flex">
               <svg
                 class="ml-2.5 mt-[0.65625rem] mr-3"
@@ -503,10 +532,11 @@ products.forEach(p => p.image = imageDict[p.productId]);
                   stroke-linecap="round"
                   stroke-linejoin="round" />
               </svg>
-              <p class="py-2.5 text-xs leading-[1.4] -tracking-[0.02em]">Exclusive access to live streams</p>
+              <p class="py-2.5 text-xs leading-[1.4] -tracking-[0.02em]">Access to community forum <br class="mobile-linebreak">
+                <span class="italic text-[#767676]">(Coming soon!)</span>
+              </p>
             </div>
-
-            <div class="absolute -top-[17px] -right-[10px] flex flex-col justify-center gap-[1px] h-11 w-11 rounded-full bg-[#005850] text-white text-center">
+            <div class="absolute -top-[17px] -right-[10px] flex flex-col justify-center gap-[1px] h-11 w-11 rounded-full bg-[#EBF2F1] text-[#222222] text-center">
               <h6 class="text-[12px] -tracking-[0.02em] leading-none pt-1">10%</h6>
               <p class="text-[12px] -tracking-[0.02em] leading-none">off</p>
             </div>
@@ -613,7 +643,7 @@ products.forEach(p => p.image = imageDict[p.productId]);
                   stroke-linecap="round"
                   stroke-linejoin="round" />
               </svg>
-              <p class="py-2.5 text-xs leading-[1.4] -tracking-[0.02em]">Anniversary $25 gift cards</p>
+              <p class="py-2.5 text-xs leading-[1.4] -tracking-[0.02em]">Access to exclusive giveaways</p>
             </div>
 
             <div class="flex border-b border-[#909090]">
@@ -638,6 +668,23 @@ products.forEach(p => p.image = imageDict[p.productId]);
               <h5 class="font-ivy text-base text-[#003C34] leading-[1.6] -tracking-[0.02em] mb-0.5">Experiences
               </h5>
             </div>
+            <div class="flex border-b border-[#909090]">
+              <svg
+                class="ml-2.5 mt-[0.65625rem] mr-3"
+                width="16"
+                height="16"
+                viewBox="0 0 16 16"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg">
+                <path
+                  d="M13.8334 4.5L6.50008 11.8333L3.16675 8.5"
+                  stroke="#005850"
+                  stroke-width="1.5"
+                  stroke-linecap="round"
+                  stroke-linejoin="round" />
+              </svg>
+              <p class="py-2.5 text-xs leading-[1.4] -tracking-[0.02em]">Monthly wellness challenges</p>
+            </div>
 
             <div class="flex border-b border-[#909090]">
               <svg
@@ -654,9 +701,27 @@ products.forEach(p => p.image = imageDict[p.productId]);
                   stroke-linecap="round"
                   stroke-linejoin="round" />
               </svg>
-              <p class="py-2.5 text-xs leading-[1.4] -tracking-[0.02em]">Tier specific NFT badge</p>
+              <p class="py-2.5 text-xs leading-[1.4] -tracking-[0.02em]">Tier specific token</p>
             </div>
-
+            <div class="flex border-b border-[#909090]">
+              <svg
+                class="ml-2.5 mt-[0.65625rem] mr-3"
+                width="16"
+                height="16"
+                viewBox="0 0 16 16"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg">
+                <path
+                  d="M13.8334 4.5L6.50008 11.8333L3.16675 8.5"
+                  stroke="#005850"
+                  stroke-width="1.5"
+                  stroke-linecap="round"
+                  stroke-linejoin="round" />
+              </svg>
+              <p class="py-2.5 text-xs leading-[1.4] -tracking-[0.02em]">Access to community forum <br class="mobile-linebreak">
+                <span class="italic text-[#767676]">(Coming soon!)</span>
+              </p>
+            </div>
             <div class="flex">
               <svg
                 class="ml-2.5 mt-[0.65625rem] mr-3"
@@ -672,10 +737,10 @@ products.forEach(p => p.image = imageDict[p.productId]);
                   stroke-linecap="round"
                   stroke-linejoin="round" />
               </svg>
-              <p class="py-2.5 text-xs leading-[1.4] -tracking-[0.02em]">Exclusive access to live streams</p>
+              <p class="py-2.5 text-xs leading-[1.4] -tracking-[0.02em]">Access to Wellness Seminar</p>
             </div>
 
-            <div class="absolute -top-[17px] -right-[10px] flex flex-col justify-center gap-[1px] h-11 w-11 rounded-full bg-[#005850] text-white text-center">
+            <div class="absolute -top-[17px] -right-[10px] flex flex-col justify-center gap-[1px] h-11 w-11 rounded-full bg-[#EBF2F1] text-[#222222] text-center">
               <h6 class="text-[12px] -tracking-[0.02em] leading-none pt-1">15%</h6>
               <p class="text-[12px] -tracking-[0.02em] leading-none">off</p>
             </div>
@@ -767,9 +832,9 @@ products.forEach(p => p.image = imageDict[p.productId]);
               <p class="py-2.5 text-xs leading-[1.4] -tracking-[0.02em]">Free shipping on domestic orders</p>
             </div>
 
-            <div class="flex border-b border-[#909090]">
+            <div class="flex border-b border-[#909090] items-center">
               <svg
-                class="ml-2.5 mt-[0.65625rem] mr-3"
+                class="ml-2.5 mr-3"
                 width="16"
                 height="16"
                 viewBox="0 0 16 16"
@@ -783,6 +848,43 @@ products.forEach(p => p.image = imageDict[p.productId]);
                   stroke-linejoin="round" />
               </svg>
               <p class="py-2.5 text-xs leading-[1.4] -tracking-[0.02em]">Anniversary $25 gift cards</p>
+              <svg
+                width="17"
+                height="17"
+                viewBox="0 0 17 17"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
+                class="anniversary-tooltip ml-2">
+                <g clip-path="url(#clip0_7_50717)">
+                  <path
+                    d="M8.42008 15.3573C12.102 15.3573 15.0868 12.3725 15.0868 8.69059C15.0868 5.00869 12.102 2.02393 8.42008 2.02393C4.73819 2.02393 1.75342 5.00869 1.75342 8.69059C1.75342 12.3725 4.73819 15.3573 8.42008 15.3573Z"
+                    stroke="#767676"
+                    stroke-width="1.5"
+                    stroke-linecap="round"
+                    stroke-linejoin="round" />
+                  <path
+                    d="M8.41992 11.3573V8.69067"
+                    stroke="#767676"
+                    stroke-width="1.5"
+                    stroke-linecap="round"
+                    stroke-linejoin="round" />
+                  <path
+                    d="M8.41992 6.02393H8.42659"
+                    stroke="#767676"
+                    stroke-width="1.5"
+                    stroke-linecap="round"
+                    stroke-linejoin="round" />
+                </g>
+                <defs>
+                  <clipPath id="clip0_7_50717">
+                    <rect
+                      width="16"
+                      height="16"
+                      fill="white"
+                      transform="translate(0.419922 0.690674)" />
+                  </clipPath>
+                </defs>
+              </svg>
             </div>
 
             <div class="flex border-b border-[#909090]">
@@ -807,7 +909,6 @@ products.forEach(p => p.image = imageDict[p.productId]);
               <h5 class="font-ivy text-base text-[#003C34] leading-[1.6] -tracking-[0.02em] mb-0.5">Experiences
               </h5>
             </div>
-
             <div class="flex border-b border-[#909090]">
               <svg
                 class="ml-2.5 mt-[0.65625rem] mr-3"
@@ -823,7 +924,7 @@ products.forEach(p => p.image = imageDict[p.productId]);
                   stroke-linecap="round"
                   stroke-linejoin="round" />
               </svg>
-              <p class="py-2.5 text-xs leading-[1.4] -tracking-[0.02em]">Tier specific NFT badge</p>
+              <p class="py-2.5 text-xs leading-[1.4] -tracking-[0.02em]">Monthly wellness challenges</p>
             </div>
 
             <div class="flex border-b border-[#909090]">
@@ -841,9 +942,8 @@ products.forEach(p => p.image = imageDict[p.productId]);
                   stroke-linecap="round"
                   stroke-linejoin="round" />
               </svg>
-              <p class="py-2.5 text-xs leading-[1.4] -tracking-[0.02em]">Exclusive access to live streams</p>
+              <p class="py-2.5 text-xs leading-[1.4] -tracking-[0.02em]">Tier specific token</p>
             </div>
-
             <div class="flex border-b border-[#909090]">
               <svg
                 class="ml-2.5 mt-[0.65625rem] mr-3"
@@ -859,10 +959,10 @@ products.forEach(p => p.image = imageDict[p.productId]);
                   stroke-linecap="round"
                   stroke-linejoin="round" />
               </svg>
-              <p class="py-2.5 text-xs leading-[1.4] -tracking-[0.02em]">Early access to sales & new product
-                launches</p>
+              <p class="py-2.5 text-xs leading-[1.4] -tracking-[0.02em]">Access to community forum <br class="mobile-linebreak">
+                <span class="italic text-[#767676]">(Coming soon!)</span>
+              </p>
             </div>
-
             <div class="flex border-b border-[#909090]">
               <svg
                 class="ml-2.5 mt-[0.65625rem] mr-3"
@@ -878,7 +978,7 @@ products.forEach(p => p.image = imageDict[p.productId]);
                   stroke-linecap="round"
                   stroke-linejoin="round" />
               </svg>
-              <p class="py-2.5 text-xs leading-[1.4] -tracking-[0.02em]">Exclusive access to community forums</p>
+              <p class="py-2.5 text-xs leading-[1.4] -tracking-[0.02em]">Access to Wellness Seminar</p>
             </div>
 
             <div class="flex">
@@ -900,7 +1000,7 @@ products.forEach(p => p.image = imageDict[p.productId]);
               </p>
             </div>
 
-            <div class="absolute -top-[17px] -right-[10px] flex flex-col justify-center gap-[1px] h-11 w-11 rounded-full bg-[#005850] text-white text-center">
+            <div class="absolute -top-[17px] -right-[10px] flex flex-col justify-center gap-[1px] h-11 w-11 rounded-full bg-[#EBF2F1] text-[#222222] text-center">
               <h6 class="text-[12px] -tracking-[0.02em] leading-none pt-1">20%</h6>
               <p class="text-[12px] -tracking-[0.02em] leading-none">off</p>
             </div>
@@ -913,7 +1013,7 @@ products.forEach(p => p.image = imageDict[p.productId]);
 
       <svg
         onclick="swiperTiers.slidePrev();"
-        class="cursor-pointer absolute z-10 top-1/2 left-[5px] -translate-y-1/2 p-3 pl-0"
+        class="cursor-pointer absolute z-10 top-1/2 left-[5px] -translate-y-1/2 pl-0 w-4 h-4"
         width="28"
         height="40"
         viewBox="0 0 16 16"
@@ -929,7 +1029,7 @@ products.forEach(p => p.image = imageDict[p.productId]);
 
       <svg
         onclick="swiperTiers.slideNext();"
-        class="cursor-pointer absolute z-10 top-1/2 right-[5px] -translate-y-1/2 p-3 pr-0"
+        class="cursor-pointer absolute z-10 top-1/2 right-[5px] -translate-y-1/2 pr-0 w-4 h-4"
         width="28"
         height="40"
         viewBox="0 0 16 16"
@@ -1225,45 +1325,8 @@ products.forEach(p => p.image = imageDict[p.productId]);
         </div>
 
         <!-- ROW 5 -->
-        <div class="flex border-b border-[#909090] bg-[#EBF2F1] px-5  py-[21.5px]  2xl:px-[32px] 2xl:py-[22px]]">
-          <h5 class="text-[10px] xl:text-[12px] leading-[1.4] -tracking-[0.02em]">Anniversary $25 gift cards</h5>
-          <svg
-            width="17"
-            height="17"
-            viewBox="0 0 17 17"
-            fill="none"
-            xmlns="http://www.w3.org/2000/svg"
-            class="more-info ml-2">
-            <g clip-path="url(#clip0_7_50717)">
-              <path
-                d="M8.42008 15.3573C12.102 15.3573 15.0868 12.3725 15.0868 8.69059C15.0868 5.00869 12.102 2.02393 8.42008 2.02393C4.73819 2.02393 1.75342 5.00869 1.75342 8.69059C1.75342 12.3725 4.73819 15.3573 8.42008 15.3573Z"
-                stroke="#767676"
-                stroke-width="1.5"
-                stroke-linecap="round"
-                stroke-linejoin="round" />
-              <path
-                d="M8.41992 11.3573V8.69067"
-                stroke="#767676"
-                stroke-width="1.5"
-                stroke-linecap="round"
-                stroke-linejoin="round" />
-              <path
-                d="M8.41992 6.02393H8.42659"
-                stroke="#767676"
-                stroke-width="1.5"
-                stroke-linecap="round"
-                stroke-linejoin="round" />
-            </g>
-            <defs>
-              <clipPath id="clip0_7_50717">
-                <rect
-                  width="16"
-                  height="16"
-                  fill="white"
-                  transform="translate(0.419922 0.690674)" />
-              </clipPath>
-            </defs>
-          </svg>
+        <div class="border-b border-[#909090] bg-[#EBF2F1] px-5  py-[21.5px]  2xl:px-[32px] 2xl:py-[22px]]">
+          <h5 class="text-[10px] xl:text-[12px] leading-[1.4] -tracking-[0.02em]">Exclusive access to secret sales</h5>
         </div>
         <div class="flex border-b border-l border-[#909090]">
           <svg
@@ -1309,8 +1372,8 @@ products.forEach(p => p.image = imageDict[p.productId]);
               stroke-linejoin="round" />
           </svg>
         </div>
-        <div class="flex border-b border-l border-[#909090]">
-          <svg
+          <div class="flex border-b border-l border-[#909090]">
+            <svg
             class="m-auto"
             width="24"
             height="24"
@@ -1318,18 +1381,11 @@ products.forEach(p => p.image = imageDict[p.productId]);
             fill="none"
             xmlns="http://www.w3.org/2000/svg">
             <path
-              d="M19.5 11.0034H5.5C4.39543 11.0034 3.5 11.8988 3.5 13.0034V20.0034C3.5 21.108 4.39543 22.0034 5.5 22.0034H19.5C20.6046 22.0034 21.5 21.108 21.5 20.0034V13.0034C21.5 11.8988 20.6046 11.0034 19.5 11.0034Z"
-              stroke="#D9D9D9"
+              d="M20.5 6.00342L9.5 17.0034L4.5 12.0034"
+              stroke="#005850"
               stroke-width="1.5"
               stroke-linecap="round"
               stroke-linejoin="round" />
-            <path
-              d="M7.5 11.0034V7.00342C7.5 5.67734 8.02678 4.40557 8.96447 3.46788C9.90215 2.5302 11.1739 2.00342 12.5 2.00342C13.8261 2.00342 15.0979 2.5302 16.0355 3.46788C16.9732 4.40557 17.5 5.67734 17.5 7.00342V11.0034"
-              stroke="#D9D9D9"
-              stroke-width="1.5"
-              stroke-linecap="round"
-              stroke-linejoin="round" />
-          </svg>
           </svg>
         </div>
         <div class="flex border-b border-l border-[#909090]">
@@ -1350,8 +1406,45 @@ products.forEach(p => p.image = imageDict[p.productId]);
         </div>
 
         <!-- ROW 6 -->
-        <div class="bg-[#EBF2F1] px-5  py-[21.5px]  2xl:px-[32px] 2xl:py-[22px]]">
-          <h5 class="text-[10px] xl:text-[12px] leading-[1.4] -tracking-[0.02em]">Exclusive access to secret sales</h5>
+        <div class="flex bg-[#EBF2F1] px-5  py-[21.5px]  2xl:px-[32px] 2xl:py-[22px]]">
+          <h5 class="text-[10px] xl:text-[12px] leading-[1.4] -tracking-[0.02em]">Anniversary $25 gift cards</h5>
+          <svg
+          width="17"
+          height="17"
+          viewBox="0 0 17 17"
+          fill="none"
+          xmlns="http://www.w3.org/2000/svg"
+          class="anniversary-tooltip ml-2">
+          <g clip-path="url(#clip0_7_50717)">
+            <path
+              d="M8.42008 15.3573C12.102 15.3573 15.0868 12.3725 15.0868 8.69059C15.0868 5.00869 12.102 2.02393 8.42008 2.02393C4.73819 2.02393 1.75342 5.00869 1.75342 8.69059C1.75342 12.3725 4.73819 15.3573 8.42008 15.3573Z"
+              stroke="#767676"
+              stroke-width="1.5"
+              stroke-linecap="round"
+              stroke-linejoin="round" />
+            <path
+              d="M8.41992 11.3573V8.69067"
+              stroke="#767676"
+              stroke-width="1.5"
+              stroke-linecap="round"
+              stroke-linejoin="round" />
+            <path
+              d="M8.41992 6.02393H8.42659"
+              stroke="#767676"
+              stroke-width="1.5"
+              stroke-linecap="round"
+              stroke-linejoin="round" />
+          </g>
+          <defs>
+            <clipPath id="clip0_7_50717">
+              <rect
+                width="16"
+                height="16"
+                fill="white"
+                transform="translate(0.419922 0.690674)" />
+            </clipPath>
+          </defs>
+        </svg>
         </div>
         <div class="flex border-l border-[#909090]">
           <svg
@@ -1589,7 +1682,11 @@ products.forEach(p => p.image = imageDict[p.productId]);
 
         <!-- ROW 3 -->
         <div class="border-b  border-[#909090] bg-[#EBF2F1] px-5  py-[21.5px]  2xl:px-[32px] 2xl:py-[22px]]">
-          <h5 class="text-[10px] xl:text-[12px] leading-[1.4] -tracking-[0.02em]">Access to community fourms</h5>
+          <h5 class="text-[10px] xl:text-[12px] leading-[1.4] -tracking-[0.02em]">Access to community forum
+            <br >
+            <div class="leading-4 italic text-[#767676]">(Coming soon!)</div>
+          </h5>
+
         </div>
         <div class="flex border-b border-l border-[#909090]">
           <svg
@@ -1825,7 +1922,6 @@ products.forEach(p => p.image = imageDict[p.productId]);
         </div>
 
 
-
       </div>
 
 
@@ -1836,7 +1932,7 @@ products.forEach(p => p.image = imageDict[p.productId]);
   </div>
 
   {{ DID YOU KNOW }}
-  {% comment %} 
+  {% comment %}
   <div class="bg-[#EBF2F1] px-5 py-10 md:p-10 md:pb-16 2xl:px-0 2xl:pt-16 2xl:pb-20 text-center">
 
     {{ SUN }}
@@ -1985,14 +2081,14 @@ products.forEach(p => p.image = imageDict[p.productId]);
             As your health journey progresses, you'll unlock new tiers with even more rewards and benefits. Each tier comes with a token that unlocks new and exciting experiences and valuable savings. Additionally, you can participate in Arise wellness challenges to earn even more tokens.
             <span class="block h-3 2xl:h-5"></span>
           </p>
-          
+
           <p class="pl-5 text-xs xl:text-base leading-[1.6] -tracking-[0.02em] overflow-hidden">
             <a href="https://cymbiotika.com/pages/introducing-arise" class="font-bold underline">
             Learn more </a>
             about Arise.
             <span class="block h-3 2xl:h-5"></span>
           </p>
-          
+
         </div>
 
         <div class="al_acc border-b border-[#D9D9D9] ">
@@ -2070,7 +2166,7 @@ products.forEach(p => p.image = imageDict[p.productId]);
 
 
   {{ GET 2 THE ROOT `kid cudi or the nbhd?` }}`
-  {% comment %} 
+  {% comment %}
   <div class="bg-[#EBF2F1] py-10 md:p-10 md:pb-16 2xl:pt-16 2xl:pb-20 text-center">
 
     <h5 class="mb-3 md:mb-7 font-ivy text-[20px] md:text-[22px] xl:text-[26px] -tracking-[0.02em] leading-[1.6] font-[400]">
@@ -2126,11 +2222,11 @@ products.forEach(p => p.image = imageDict[p.productId]);
 
 
   const toggleFaqView = () => {
-    
+
     console.log('click click');
-    
+
     const hideFaqToggle = document.querySelectorAll('.faqs-hide');
-    
+
     const notEnrolledHeader = document.querySelector('.hero-header')
     const ariseApp = document
       .getElementById('arise-app')
@@ -2151,7 +2247,7 @@ products.forEach(p => p.image = imageDict[p.productId]);
   if (ariseApp) {
     ariseApp.classList.toggle('hidden')
   }
-  
+
   setTimeout(() => {
     window.scroll({
       top: 0,
@@ -2191,72 +2287,80 @@ if (faqBack) {
 }
 
 const allPrettyText = {
-
-    Member: {
-        unearned: 'Create a Subscription.',
-        earned: 'creating a subscription.',
-        ctaText: ''
-    },
-    Insider: {
-        unearned: 'continue your subscription for 3 months.',
-        earned: 'subscribing for 3 months consecutively.',
-        ctaText: ''
-    },
-    Elite: {
-        unearned: 'continue your subscription for 4 months.',
-        earned: 'subscribing for 4 months consecutively.',
-        ctaText: ''
-    },
-    VIP: {
-        unearned: 'continue your subscription for 6 months.',
-        earned: 'subscribing for 6 months consecutively.',
-        ctaText: ''
-    },
-    Adventurer: {
-        unearned: 'Go on an outdoor walk or a hike.',
-        earned: 'taking a hike or walk outside in July, 2023.',
-        ctaText: 'Take a walk '
-    },
-    'HBD!': {
-        unearned: 'Add your birthday and receive a free birthday gift from us, just for you.',
-        earned: 'filling in your birthday. We look forward to helping you celebrate!',
-        ctaText: 'ADD BIRTHDAY'
-    },
-    'News-Savvy': {
-        unearned: 'Sign up for emails and texts.',
-        earned: 'signing up for emails and SMS.',
-        ctaText: 'SIGN UP'
-    },
-    Experimenter: {
-        unearned: 'Add a new product to your subscription to further your wellness journey.',
-        earned: 'subscribing to a product you had not yet tried.',
-        ctaText: 'ADD A PRODUCT'
-    },
-    'Insta-Fan': {
-        unearned: 'Follow us on Instagram.',
-        earned: 'following us on Instagram',
-        ctaText: 'FOLLOW US'
-    },
-    'Social Expert': {
-        unearned: 'Repost a Cymbiotika post or reel on Instagram',
-        earned: 'reposting Cymbiotika content on Instagram.',
-        ctaText: 'REPOST NOW'
-    },
-    'Contributor': {
-        unearned: 'Take our survey.',
-        earned: 'completing our survey. Thanks for the feedback!',
-        ctaText: 'TAKE OUR SURVEY'
-    },
-    'Dream Team': {
-        unearned: 'Refer a friend through our referral program',
-        earned: 'referring a friend.',
-        ctaText: 'REFER A FRIEND'
-    },
-    'Commentator': {
-        unearned: 'Leave a review on one of our products!',
-        earned: 'by leaving a review for one of our products..',
-        ctaText: 'LEAVE A REVIEW'
-    },
+  Member: {
+      unearned: 'Create a Subscription.',
+      earned: 'creating a subscription.',
+      ctaText: ''
+  },
+  Insider: {
+      unearned: 'continue your subscription for 3 months.',
+      earned: 'subscribing for 3 months consecutively.',
+      ctaText: ''
+  },
+  Elite: {
+      unearned: 'continue your subscription for 4 months.',
+      earned: 'subscribing for 4 months consecutively.',
+      ctaText: ''
+  },
+  VIP: {
+      unearned: 'continue your subscription for 6 months.',
+      earned: 'subscribing for 6 months consecutively.',
+      ctaText: ''
+  },
+  'HBD!': {
+      unearned: 'Add your birthday and receive a free birthday gift from us, just for you.',
+      earned: 'filling in your birthday. We look forward to helping you celebrate!',
+      ctaText: 'ADD BIRTHDAY',
+      ctaLink: ''
+  },
+  'News-Savvy': {
+      unearned: 'Sign up for emails and texts.',
+      earned: 'signing up for emails and SMS.',
+      ctaText: 'SIGN UP',
+      ctaLink: ''
+  },
+  Experimenter: {
+      unearned: 'Add a new product to your subscription to further your wellness journey.',
+      earned: 'subscribing to a product you had not yet tried.',
+      ctaText: 'ADD A PRODUCT',
+      ctaLink: ''
+  },
+  'Insta-Fan': {
+      unearned: 'Follow us on Instagram.',
+      earned: 'following us on Instagram',
+      ctaText: 'FOLLOW US',
+      ctaLink: 'https://www.instagram.com/cymbiotika/'
+  },
+  'Social Expert': {
+      unearned: 'Repost a Cymbiotika post or reel on Instagram',
+      earned: 'reposting Cymbiotika content on Instagram.',
+      ctaText: 'REPOST NOW',
+      ctaLink: 'https://www.instagram.com/cymbiotika/'
+  },
+  'Contributor': {
+      unearned: 'Take our survey.',
+      earned: 'completing our survey. Thanks for the feedback!',
+      ctaText: 'TAKE OUR SURVEY',
+      ctaLink: 'https://app.knocommerce.com/surveys/e615c3d4-a0f7-4334-85c5-101dc780df1e'
+  },
+  'Dream Team': {
+      unearned: 'Refer a friend through our referral program',
+      earned: 'referring a friend.',
+      ctaText: 'REFER A FRIEND',
+      ctaLink: '/pages/refer-a-friend'
+  },
+  'Commentator': {
+      unearned: 'Leave a review on one of our products!',
+      earned: 'Write a post or leave a comment in the community forum!',
+      ctaText: 'LEAVE A REVIEW',
+      ctaLink: ''
+  },
+  'Spectator': {
+      unearned: 'Join a Cymbiotika.com livestream and learn about our newest products!',
+      earned: 'tuning into one of our live streams.',
+      ctaText: 'VIEW LIVESTREAMS',
+      ctaLink: '/pages/live'
+  },
 }
 
 
@@ -2548,11 +2652,30 @@ const allPrettyText = {
       text-align: left;
     }
   }
+
+  @media(min-width: 420px) {
+    .mobile-linebreak {
+      display: none;
+    }
+  }
+
+
 </style>
 
 
 
 <script src="https://cdn.tailwindcss.com"></script>
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@8/swiper-bundle.min.css" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/tippy.js/6.3.7/themes/light-border.min.css" integrity="sha512-DiG+GczLaoJczcpFjhVy4sWA1rheh0I6zmlEc+ax7vrq2y/qTg80RtxDOueLcwBrC80IsiQapIgTi++lcGHPLg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 
 <script src="https://cdn.jsdelivr.net/npm/swiper@8/swiper-bundle.min.js"></script>
+
+<!-- Tippy CDN -->
+<script src="https://unpkg.com/@popperjs/core@2"></script>
+<script src="https://unpkg.com/tippy.js@6"></script>
+<script>
+  tippy('.anniversary-tooltip', {
+    theme: 'light-border',
+    content: ' Anniversary gift cards will be given 1 year from your first purchase!',
+  });
+</script>
