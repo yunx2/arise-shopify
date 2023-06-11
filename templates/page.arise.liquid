@@ -87,27 +87,27 @@ products.forEach(p => p.image = imageDict[p.productId]);
     <div class="cym-portal-max-width pb-5 md:pb-[26px] leading-none overflow-x-auto flex gap-x-5">
 
       <div class="hover-underline">
-        <a href="/tools/recurring/login?redirect=customer_portal%2Fsubscriptions" onclick="setPortalDestination('dashboard')" class="font-medium leading-none text-xs -tracking-[0.02em] truncate uppercase fontTermina">
+        <a href="/tools/recurring/login?redirect=customer_portal%2Fsubscriptions" onclick="setPortalDestination('dashboard')" class="font-medium leading-none text-xs md:text-sm xl:text-base -tracking-[0.02em] truncate uppercase fontTermina">
           Dashboard
         </a>
       </div>
       <div class="hover-underline">
-        <a href="/tools/recurring/login?redirect=customer_portal%2Fsubscriptions" onclick="setPortalDestination('bundles')" class="font-medium leading-none text-xs -tracking-[0.02em] truncate uppercase fontTermina">
+        <a href="/tools/recurring/login?redirect=customer_portal%2Fsubscriptions" onclick="setPortalDestination('bundles')" class="font-medium leading-none text-xs md:text-sm xl:text-base -tracking-[0.02em] truncate uppercase fontTermina">
           Subscriptions
         </a>
       </div>
       <div>
-        <a href="/pages/arise" class="font-medium leading-none text-xs -tracking-[0.02em] truncate underline underline-offset-4 uppercase text-[#697E47] fontTermina">
+        <a href="/pages/arise" class="font-medium leading-none text-xs md:text-sm xl:text-base -tracking-[0.02em] truncate underline underline-offset-4 uppercase text-[#697E47] fontTermina">
           Arise Rewards
         </a>
       </div>
       <div class="hover-underline">
-        <a href="/tools/recurring/login?redirect=customer_portal%2Fsubscriptions" onclick="setPortalDestination('orderhistory')" class="font-medium leading-none text-xs -tracking-[0.02em] truncate uppercase fontTermina">
+        <a href="/tools/recurring/login?redirect=customer_portal%2Fsubscriptions" onclick="setPortalDestination('orderhistory')" class="font-medium leading-none text-xs md:text-sm xl:text-base -tracking-[0.02em] truncate uppercase fontTermina">
           Order History
         </a>
       </div>
       <div class="hover-underline">
-        <a href="/pages/contact-us" class="font-medium leading-none text-xs -tracking-[0.02em] truncate uppercase fontTermina">
+        <a href="/pages/contact-us" class="font-medium leading-none text-xs md:text-sm xl:text-base -tracking-[0.02em] truncate uppercase fontTermina">
           Help
         </a>
       </div>
@@ -217,7 +217,7 @@ products.forEach(p => p.image = imageDict[p.productId]);
     </h1>
 
     {{ card container }}
-    <div class="grid md:grid-cols-3 mx-auto gap-[35px] px-5">
+    <div class="grid xl:grid-cols-3 mx-auto gap-[35px] px-5 md:px-0">
 
       {{ card 1 }}
       <div class="border border-[#909090] p-5 rounded-xl text-center">
@@ -1925,7 +1925,7 @@ products.forEach(p => p.image = imageDict[p.productId]);
       </div>
 
 
-      <span class="block mt-5 md:mt-8 2xl:mt-10 px-2 font-[500] italic text-[12px] xl:text-[14px] leading-[1.4] -tracking-[0.02em]">*You will lose your member benefits and discounts if you cancel your subscription. Remember that you can always modify the subscription date to one that works better for you.</span>
+      <span class="block mt-5 md:mt-8 2xl:mt-10 px-2 font-[500] italic text-[12px] xl:text-[14px] leading-[1.4] -tracking-[0.02em] text-[#767676]">*You will lose your member benefits and discounts if you cancel your subscription. Remember that you can always modify the subscription date to one that works better for you.</span>
     </div>
 
 
@@ -2021,11 +2021,12 @@ products.forEach(p => p.image = imageDict[p.productId]);
   </div>
   {% endcomment %}
   {{ FAQs }}
-  <div class="flex flex-col md:flex-row gap-[20px] max-w-screen-2xl mx-auto md:gap-[40px] xl:gap-[80px]  px-[20px] py-[28px] md:px-[40px] md:py-[40px] xl:p-[80px]">
-    <div class="aspect-[6/4] h-max shrink-0 grow basis-[224px] md:basis-[300px] xl:basis-[600px] bg-cover bg-center bg-no-repeat rounded-[5px] bg-[url('https://cdn.shopify.com/s/files/1/1824/8017/files/15jan23_arise_faq_charcoal.jpg?v=1673847368')]"></div>
+
+  <div class="flex flex-col md:flex-row gap-y-[20px] max-w-screen-2xl mx-auto md:gap-x-[40px] xl:gap-x-[56px] px-5 pt-[28px] pb-5 md:px-9 md:pt-[40px] md:pb-[60px] xl:p-[80px] 2xl:px-16">
+    <div class="aspect-[5/4] h-max shrink-0 grow basis-[224px] md:basis-[300px] xl:basis-[600px] bg-cover bg-center bg-no-repeat rounded-[5px] bg-[url('https://cdn.shopify.com/s/files/1/1824/8017/files/15jan23_arise_faq_charcoal.jpg?v=1673847368')]"></div>
 
     <div class="md:basis-[50%] grow">
-      <h1 class="centerMobile-leftDesktop mb-4 md:mb-5 xl:mb-10 font-ivy text-xl md:text-[22px] xl:text-[36px] -tracking-[0.02em] leading-[1.4] font-[400]">
+      <h1 class="centerMobile-leftDesktop mb-4 md:mb-5 xl:mb-10 font-ter text-[20px] md:text-[22px] xl:text-[26px] -tracking-[0.02em] leading-[1.6] font-[400]">
         Frequently Asked Questions
       </h1>
 
@@ -2034,7 +2035,7 @@ products.forEach(p => p.image = imageDict[p.productId]);
 
         <div class="al_acc border-b border-t border-[#D9D9D9] ">
           <div class="relative cursor-pointer">
-            <h6 class="pr-4 md:pr-6 py-3.5 xl:py-5 text-[12px] md:text-[14px] leading-[1.6] -tracking-[0.02em]">What is Arise?
+            <h6 class="pr-4 md:pr-6 py-3.5 xl:py-5 text-[12px] md:text-[14px] leading-[1.6] -tracking-[0.02em] font-mon">What is Arise?
             </h6>
             <svg
               class="absolute top-1/2 -translate-y-1/2 right-0 h-4 w-4 md:h-6 md:w-6"
@@ -2057,7 +2058,7 @@ products.forEach(p => p.image = imageDict[p.productId]);
 
         <div class="al_acc border-b border-[#D9D9D9] ">
           <div class="relative cursor-pointer">
-            <h6 class=" pr-4 md:pr-6 py-3.5 xl:py-5 text-[12px] md:text-[14px] leading-[1.6] -tracking-[0.02em]">How does Arise work?
+            <h6 class=" pr-4 md:pr-6 py-3.5 xl:py-5 text-[12px] md:text-[14px] leading-[1.6] -tracking-[0.02em] font-mon">How does Arise work?
             </h6>
             <svg
               class="absolute top-1/2 -translate-y-1/2 right-0 h-4 w-4 md:h-6 md:w-6"
@@ -2093,7 +2094,7 @@ products.forEach(p => p.image = imageDict[p.productId]);
 
         <div class="al_acc border-b border-[#D9D9D9] ">
           <div class="relative cursor-pointer">
-            <h6 class=" pr-4 md:pr-6 py-3.5 xl:py-5 text-[12px] md:text-[14px] leading-[1.6] -tracking-[0.02em]">Do I have to pay for Arise?</h6>
+            <h6 class=" pr-4 md:pr-6 py-3.5 xl:py-5 text-[12px] md:text-[14px] leading-[1.6] -tracking-[0.02em] font-mon">Do I have to pay for Arise?</h6>
             <svg
               class="absolute top-1/2 -translate-y-1/2 right-0 h-4 w-4 md:h-6 md:w-6"
               width="16"
@@ -2115,7 +2116,7 @@ products.forEach(p => p.image = imageDict[p.productId]);
 
         <div class="al_acc border-b border-[#D9D9D9] ">
           <div class="relative cursor-pointer">
-            <h6 class=" pr-4 md:pr-6 py-3.5 xl:py-5 text-[12px] md:text-[14px] leading-[1.6] -tracking-[0.02em]">How do I create an account?
+            <h6 class=" pr-4 md:pr-6 py-3.5 xl:py-5 text-[12px] md:text-[14px] leading-[1.6] -tracking-[0.02em] font-mon">How do I create an account?
             </h6>
             <svg
               class="absolute top-1/2 -translate-y-1/2 right-0 h-4 w-4 md:h-6 md:w-6"
@@ -2153,7 +2154,7 @@ products.forEach(p => p.image = imageDict[p.productId]);
           </p>
         </div>
 
-        <button class="view-more-faqs w-[190px] mt-9 mx-auto md:mx-[unset] flex justify-center py-[7.5px] md:py-[9.5px] 2xl:py-[8px] font-[600] text-[12px] xl:text-[14px] leading-[1.4] tracking-[0.08em] uppercase bg-[#005850] text-white border border-[#005850] hover:text-[#005850] hover:bg-white rounded-full transition-colors duration-500"
+        <button class="view-more-faqs w-[190px] mt-9 mx-auto md:mx-0 flex justify-center py-[7.5px] md:py-[9.5px] 2xl:py-[8px] font-[600] text-[12px] xl:text-[14px] leading-[1.4] tracking-[0.08em] uppercase bg-[#005850] text-white border border-[#005850] hover:text-[#005850] hover:bg-white rounded-full transition-colors duration-500"
         onclick="scroll(0, 1);"
         >
           Learn More
@@ -2164,8 +2165,7 @@ products.forEach(p => p.image = imageDict[p.productId]);
   </div>
 
 
-
-  {{ GET 2 THE ROOT `kid cudi or the nbhd?` }}`
+  {{ GET 2 THE ROOT `kid cudi or the nbhd?` }}
   {% comment %}
   <div class="bg-[#EBF2F1] py-10 md:p-10 md:pb-16 2xl:pt-16 2xl:pb-20 text-center">
 
@@ -2287,81 +2287,81 @@ if (faqBack) {
 }
 
 const allPrettyText = {
-  Member: {
-      unearned: 'Create a Subscription.',
-      earned: 'creating a subscription.',
-      ctaText: ''
-  },
-  Insider: {
-      unearned: 'continue your subscription for 3 months.',
-      earned: 'subscribing for 3 months consecutively.',
-      ctaText: ''
-  },
-  Elite: {
-      unearned: 'continue your subscription for 4 months.',
-      earned: 'subscribing for 4 months consecutively.',
-      ctaText: ''
-  },
-  VIP: {
-      unearned: 'continue your subscription for 6 months.',
-      earned: 'subscribing for 6 months consecutively.',
-      ctaText: ''
-  },
-  'HBD!': {
-      unearned: 'Add your birthday and receive a free birthday gift from us, just for you.',
-      earned: 'filling in your birthday. We look forward to helping you celebrate!',
-      ctaText: 'ADD BIRTHDAY',
-      ctaLink: ''
-  },
-  'News-Savvy': {
-      unearned: 'Sign up for emails and texts.',
-      earned: 'signing up for emails and SMS.',
-      ctaText: 'SIGN UP',
-      ctaLink: ''
-  },
-  Experimenter: {
-      unearned: 'Add a new product to your subscription to further your wellness journey.',
-      earned: 'subscribing to a product you had not yet tried.',
-      ctaText: 'ADD A PRODUCT',
-      ctaLink: ''
-  },
-  'Insta-Fan': {
-      unearned: 'Follow us on Instagram.',
-      earned: 'following us on Instagram',
-      ctaText: 'FOLLOW US',
-      ctaLink: 'https://www.instagram.com/cymbiotika/'
-  },
-  'Social Expert': {
-      unearned: 'Repost a Cymbiotika post or reel on Instagram',
-      earned: 'reposting Cymbiotika content on Instagram.',
-      ctaText: 'REPOST NOW',
-      ctaLink: 'https://www.instagram.com/cymbiotika/'
-  },
-  'Contributor': {
-      unearned: 'Take our survey.',
-      earned: 'completing our survey. Thanks for the feedback!',
-      ctaText: 'TAKE OUR SURVEY',
-      ctaLink: 'https://app.knocommerce.com/surveys/e615c3d4-a0f7-4334-85c5-101dc780df1e'
-  },
-  'Dream Team': {
-      unearned: 'Refer a friend through our referral program',
-      earned: 'referring a friend.',
-      ctaText: 'REFER A FRIEND',
-      ctaLink: '/pages/refer-a-friend'
-  },
-  'Commentator': {
-      unearned: 'Leave a review on one of our products!',
-      earned: 'Write a post or leave a comment in the community forum!',
-      ctaText: 'LEAVE A REVIEW',
-      ctaLink: ''
-  },
-  'Spectator': {
-      unearned: 'Join a Cymbiotika.com livestream and learn about our newest products!',
-      earned: 'tuning into one of our live streams.',
-      ctaText: 'VIEW LIVESTREAMS',
-      ctaLink: '/pages/live'
-  },
-}
+            Member: {
+                unearned: 'Create a Subscription.',
+                earned: 'Creating a subscription.',
+                ctaText: ''
+            },
+            Insider: {
+                unearned: 'Continue your subscription for 3 months.',
+                earned: 'Subscribing for 3 months consecutively.',
+                ctaText: ''
+            },
+            Elite: {
+                unearned: 'Continue your subscription for 4 months.',
+                earned: 'Subscribing for 4 months consecutively.',
+                ctaText: ''
+            },
+            VIP: {
+                unearned: 'Continue your subscription for 6 months.',
+                earned: 'Subscribing for 6 months consecutively.',
+                ctaText: ''
+            },
+            'HBD!': {
+                unearned: 'Add your birthday and receive a free birthday gift from us, just for you.',
+                earned: 'Filling in your birthday. We look forward to helping you celebrate!',
+                ctaText: 'ADD BIRTHDAY',
+                ctaLink: ''
+            },
+            'News-Savvy': {
+                unearned: 'Sign up for emails and texts.',
+                earned: 'Signing up for emails and SMS.',
+                ctaText: 'SIGN UP',
+                ctaLink: ''
+            },
+            Experimenter: {
+                unearned: 'Add a new product to your subscription to further your wellness journey.',
+                earned: 'Subscribing to a product you had not yet tried.',
+                ctaText: 'ADD A PRODUCT',
+                ctaLink: ''
+            },
+            'Insta-Fan': {
+                unearned: 'Follow us on Instagram.',
+                earned: 'Following us on Instagram',
+                ctaText: 'FOLLOW US',
+                ctaLink: 'https://www.instagram.com/cymbiotika/'
+            },
+            'Social Expert': {
+                unearned: 'Repost a Cymbiotika post or reel on Instagram',
+                earned: 'Reposting Cymbiotika content on Instagram.',
+                ctaText: 'REPOST NOW',
+                ctaLink: 'https://www.instagram.com/cymbiotika/'
+            },
+            'Contributor': {
+                unearned: 'Take our survey.',
+                earned: 'Completing our survey. Thanks for the feedback!',
+                ctaText: 'TAKE OUR SURVEY',
+                ctaLink: 'https://app.knocommerce.com/surveys/e615c3d4-a0f7-4334-85c5-101dc780df1e'
+            },
+            'Dream Team': {
+                unearned: 'Refer a friend through our referral program',
+                earned: 'Referring a friend.',
+                ctaText: 'REFER A FRIEND',
+                ctaLink: '/pages/refer-a-friend'
+            },
+            'Commentator': {
+                unearned: 'Leave a review on one of our products!',
+                earned: 'Write a post or leave a comment in the community forum!',
+                ctaText: 'LEAVE A REVIEW',
+                ctaLink: ''
+            },
+            'Spectator': {
+                unearned: 'Join a Cymbiotika.com livestream and learn about our newest products!',
+                earned: 'Tuning into one of our live streams.',
+                ctaText: 'VIEW LIVESTREAMS',
+                ctaLink: '/pages/live'
+            },
+        }
 
 
 </script>
