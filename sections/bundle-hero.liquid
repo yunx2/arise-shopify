@@ -1,0 +1,375 @@
+<div class="shopify-section">
+  <div class="shopify-section home-hero-slider">
+    <div class="fullwidth slidercontainer">
+      <div
+        id="bundleandsave"
+        class="slider left active"
+        data-nav-icon="black"
+        style="height: 100% !important;">
+        <div class="contentcontainer grid md:grid-cols-2">
+          <div id="md-text-left" class="content md:self-center">
+
+            <div class="title">
+              <span style="font-family: ivyjournal,serif;letter-spacing: -.02em">
+                {{ section.settings.title }}
+              </span>
+            </div>
+            <div class="body">
+              {{ section.settings.subtitle }}
+            </div>
+            <div class="buttoncontainer left">
+              <a
+                href="#create-your-bundle-app"
+                class="button whiteHover uppercase font-normal"
+                style="background-color: #222222;color: #ffffff">Shop Now</a>
+
+            </div>
+
+
+          </div>
+          <div id="discounts" class="content">
+
+            <div class="bundlecontainer">
+              <div class="discountmotivation">
+                <div class="amount">10</div>
+                <div class="percent">%</div>
+                <div class="off">off</div>
+                <div class="whenyoubuy">when you buy 1</div>
+              </div>
+              <div class="discountmotivation">
+                <div class="amount">15</div>
+                <div class="percent">%</div>
+                <div class="off">off</div>
+                <div class="whenyoubuy">when you buy 2</div>
+              </div>
+              <div class="discountmotivation">
+                <div class="amount">20</div>
+                <div class="percent">%</div>
+                <div class="off">off</div>
+                <div class="whenyoubuy">when you buy 3</div>
+              </div>
+              <div class="break"></div>
+              <div class="discountmotivation">
+                <div class="amount">25</div>
+                <div class="percent">%</div>
+                <div class="off">off</div>
+                <div class="whenyoubuy">when you buy 4</div>
+              </div>
+              <div class="discountmotivation">
+                <div class="amount">30</div>
+                <div class="percent">%</div>
+                <div class="off">off</div>
+                <div class="whenyoubuy">when you buy 5</div>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+<!--
+<div class="hero__container">
+<img class="hero__img hero__desktop" src="{{ section.settings.image | image_url }}" />
+<img class="hero__img hero__mobile" src="{{ section.settings.mobile_image | image_url }}" />
+<div class="hero__content">
+{% if section.settings.title != blank %}
+<h2 class="hero__title" style="color: {{ section.settings.title_color }};">{{ section.settings.title }}</h2>
+{% endif %}
+{% if section.settings.subtitle != blank %}
+<p class="hero__subtitle" style="color: {{ section.settings.subtitle_color }};">{{ section.settings.subtitle }}</p>
+{% endif %}
+</div>
+</div>
+-->{% include 'bundle-perks-strip' %}
+
+{{ 'home-hero-slider.css' | asset_url | stylesheet_tag }}
+<style>
+  html {
+    scroll-padding-top: 76px;
+    scroll-behavior: smooth;
+  }
+  #bundleandsave .content {
+    text-align: center;
+    padding-top: 8px;
+  }
+  #bundleandsave .bundlecontainer {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    row-gap: 7px;
+    column-gap: 15px;
+  }
+  #bundleandsave .break {
+    flex-basis: 100%;
+  }
+  #bundleandsave .buttosdfsfancontainer {
+    positdghion: absolute;
+    bottom: 36px;
+    left: 50%;
+    transfgdhorm: translateX(-50%);
+  }
+  #bundleandsave .nocoderequired {
+    margin-bottom: 15px;
+  }
+  #bundleandsave .title {
+    margin-bottom: 8px;
+  }
+  #bundleandsave .discountmotivation {
+    display: grid;
+    grid-template-rows: 50% 30% 20%;
+    grid-template-columns: 1fr auto;
+    text-transform: uppercase;
+  }
+  #bundleandsave .amount {
+    font-size: 32px;
+    grid-row: 1 / span 2;
+    align-self: center;
+    justify-self: center;
+    line-height: 1;
+  }
+  #bundleandsave .percent {
+    font-size: 20px;
+    line-height: 1;
+  }
+  #bundleandsave .off {
+    font-size: 8px;
+    line-height: 1;
+  }
+  #bundleandsave .whenyoubuy {
+    font-size: 6px;
+    line-height: 1;
+    grid-column: 1 / span 2;
+  }
+  #bundleandsave .contentcontainer {
+    margin: 0 auto;
+  }
+  .content .bundlecontainer {
+    margin-top: ;
+  }
+  .contentcontainer #discounts {
+    margin-top: -70px !important;
+  }
+  @media all and (min-width: 768px) {
+    #bundleandsave .content {
+      padding-top: unset;
+    }
+    .contentcontainer #discounts {
+      margin-top: unset !important;
+    }
+    #bundleandsave .contentcontainer {
+      margin: unset;
+    }
+    #bundleandsave .bundlecontainer {
+      display: flex;
+      row-gap: 10px;
+      column-gap: 20px;
+    }
+    #bundleandsave .buttoncontainer {
+      margin: auto;
+    }
+    #bundleandsave .amount {
+      font-size: 55px;
+    }
+    #bundleandsave .percent {
+      font-size: 32px;
+    }
+    #bundleandsave .off {
+      font-size: 12px;
+    }
+    #bundleandsave .whenyoubuy {
+      font-size: 10px;
+    }
+  }
+
+  @media all and (min-width: 1280px) {
+    #bundleandsave .amount {
+      font-size: 64px;
+    }
+    #bundleandsave .percent {
+      font-size: 40px;
+    }
+    #bundleandsave .off {
+      font-size: 16px;
+    }
+    #bundleandsave .whenyoubuy {
+      font-size: 10px;
+    }
+  }
+
+  @media all and (min-width: 1512px) {
+    #bundleandsave .title {
+      margin-bottom: 20px;
+    }
+  }
+
+  /* transparent navbar */
+  .announcement-bar {
+    display: none;
+  }
+  .sticky-header {
+    position: fixed;
+    width: 100%;
+  }
+  .site-header,
+  .mobile-nav-bar-wrapper {
+    transition: background-color 0.5s;
+  }
+  .sticky-header,
+  .site-header,
+  .mobile-nav-bar-wrapper {
+    background-color: rgba(255, 255, 255, 0);
+  }
+  html:not([data-scroll='0']) .site-header,
+  html:not([data-scroll='0']) .mobile-nav-bar-wrapper {
+    background-color: #ffffffa1;
+    backdrop-filter: blur(8px);
+  }
+  .site-header:hover {
+    background-color: #ffffffa1;
+    backdrop-filter: blur(8px);
+  }
+  .hydrogenHover > rect,
+  .hydrogenHover > text {
+    transition: 0.5s fill, 0.5s stroke;
+  }
+
+  .hydrogenHover:hover > rect {
+    fill: #71984a !important;
+    stroke: #71984a !important;
+  }
+
+  .hydrogenHover:hover > text {
+    fill: #ffffff !important;
+  }
+  .site-footer .newsletter-signup {
+    margin-top: 16px;
+  }
+  .site-footer .wrapper .grid {
+    display: flex;
+  }
+
+  .home-hero-slider #bundleandsave {
+    background-image: url('https://cdn.shopify.com/s/files/1/1824/8017/files/bundle-hero-mobile.jpg?v=1686161084');
+    background-size: cover;
+  }
+  @media screen and (min-width: 768px) {
+    .home-hero-slider #bundleandsave {
+      /*background-image: url('{{ section.settings.image | image_url }}');*/
+      background-image: url('https://cdn.shopify.com/s/files/1/1824/8017/files/bundle-hero-tablet.jpg?v=1686161084');
+    }
+  }
+  @media screen and (min-width: 1280px) {
+    .home-hero-slider #bundleandsave {
+      /*background-image: url('{{ section.settings.image | image_url }}');*/
+      background-image: url('https://cdn.shopify.com/s/files/1/1824/8017/files/bundle-hero-desktop.jpg?v=1686161085');
+    }
+  }
+
+  .hero__container {
+    position: relative;
+  }
+  .hero__img {
+    width: 100%;
+    height: auto;
+  }
+  .hero__content {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+    max-width: 700px;
+    margin: 0 auto;
+  }
+  .hero__title {
+    font-weight: bold;
+    font-size: 44px;
+  }
+  .hero__subtitle {
+    font-size: 18px;
+  }
+  .hero__mobile {
+    display: none;
+  }
+
+  @media screen and (max-width: 769px) {
+    .hero__content {
+      width: 95%;
+    }
+    .hero__title {
+      font-size: 30px;
+    }
+    .hero__subtitle {
+      font-size: 14px;
+    }
+    .hero__desktop {
+      display: none;
+    }
+    .hero__mobile {
+      display: block;
+    }
+  }
+  @media screen and (min-width: 768px) {
+    #md-text-left {
+      text-align: left !important;
+    }
+  }
+</style>
+
+<script>
+  // set navbar background when scrolling
+  const storeScroll = () => {
+    document.getElementsByTagName('html')[0].dataset.scroll = window.scrollY;
+  }
+
+// Listen for new scroll events, here we debounce our `storeScroll` function
+  document.addEventListener('scroll', storeScroll, {passive: true});
+</script>
+
+
+{% schema %}
+  {
+    "name": "Bundle Hero",
+    "settings": [
+      {
+        "type": "header",
+        "content": "Image"
+      },
+      {
+        "type": "image_picker",
+        "id": "image",
+        "label": "Desktop Image"
+      },
+      {
+        "type": "image_picker",
+        "id": "mobile_image",
+        "label": "Mobile Image"
+      },
+      {
+        "type": "header",
+        "content": "Content"
+      }, {
+        "type": "text",
+        "id": "title",
+        "label": "Title"
+      }, {
+        "type": "color",
+        "id": "title_color",
+        "label": "Title Color"
+      }, {
+        "type": "textarea",
+        "id": "subtitle",
+        "label": "Subtitle"
+      }, {
+        "type": "color",
+        "id": "subtitle_color",
+        "label": "Subtitle Color"
+      }
+    ]
+  }
+{% endschema %}
