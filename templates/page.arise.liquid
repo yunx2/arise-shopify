@@ -22,8 +22,7 @@
   }
 
 
-  let products = []{%- assign collection = collections['cymbiotika_bundle_recharge'] -%}
-  {% for product in collection.products %}
+  let products = []{%- assign collection = collections['cymbiotika_bundle_recharge'] -%}{% for product in collection.products %}
     {%- assign lower = product.title | downcase -%}
     {% if product.tags contains 'merch' or lower contains 'preorder' or product.available == false  %}
       {% continue %}
@@ -36,14 +35,12 @@
       productId: parseInt("{{ product.id }}"),
       variantId: parseInt("{{ product.variants[0].id }}"),
       title: `{{ product.title }}`
-    }){% endfor %}
-  const imageDict = formatImageSources(imageSources);
+    }){% endfor %}const imageDict = formatImageSources(imageSources);
 
   products.forEach(p => p.image = imageDict[p.productId]);
 
 // console.log(‘products’, products)
-  let orders = []{% for order in customer.orders %}orders.push({created_at: "{{ order.created_at }}", line_items: {{ order.line_items | json }}}){% endfor %}
-  if (orders.length > 2) {
+  let orders = []{% for order in customer.orders %}orders.push({created_at: "{{ order.created_at }}", line_items: {{ order.line_items | json }}}){% endfor %}if (orders.length > 2) {
     orders = orders.slice(0, 2)
   }
   orders.forEach(el => {
@@ -266,7 +263,7 @@
   </div>
   {% if customer %}
     <div class="get-started-link mt-[20px] md:mt-[40px] hidden">
-      <button onClick="spawnOverlay();" class="register-link w-max mx-auto flex items-center px-[40px] py-[7.5px] md:py-[9.5px] 2xl:py-[8px] text-[12px] xl:text-[14px] leading-[1.4] tracking-[0.08em] uppercase bg-[#005850] text-white border border-[#005850] hover:text-[#005850] hover:bg-white rounded-full transition-colors duration-500 font-300 font-mon">
+      <button onClick="spawnOverlay();" class="register-link w-max mx-auto flex items-center px-[40px] py-[7.5px] md:py-[9.5px] 2xl:py-[8px] text-[12px] xl:text-[14px] leading-[1.4] tracking-[0.08em] uppercase bg-[#005850] text-white border border-[#005850] hover:text-[#005850] hover:bg-white rounded-full transition-colors duration-500 font-300 montserrat">
         Get Started
       </button>
     </div>
@@ -2137,7 +2134,7 @@
           </p>
         </div>
 
-        <button class="view-more-faqs w-[190px] mt-9 mx-auto md:mx-0 flex justify-center py-[7.5px] md:py-[9.5px] 2xl:py-[8px] font-[500] text-[12px] xl:text-[14px] leading-[1.4] tracking-[0.08em] uppercase bg-[#005850] text-white border border-[#005850] hover:text-[#005850] hover:bg-white rounded-full transition-colors duration-500  montserrat" onclick="scroll(0, 1);">
+        <button class="view-more-faqs w-[190px] mt-9 mx-auto md:mx-0 flex justify-center py-[7.5px] md:py-[9.5px] 2xl:py-[8px] font-[600] text-[12px] xl:text-[14px] leading-[1.4] tracking-[0.08em] uppercase bg-[#005850] text-white border border-[#005850] hover:text-[#005850] hover:bg-white rounded-full transition-colors duration-500" onclick="scroll(0, 1);">
           Learn More
         </button>
       </div>
@@ -2352,10 +2349,10 @@ const allPrettyText = {
   }
 
   .fontTermina {
-    font-family: 'Termina', sans-serif
+    font-family: Termina, sans-serif
   }
   .montserrat {
-    font-family: 'Montserrat', sans-serif
+    font-family: Montserrat, sans-serif
   }
 
   .chevron-right {
