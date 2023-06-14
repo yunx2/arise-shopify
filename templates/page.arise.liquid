@@ -22,11 +22,14 @@
   }
 
 
-  let products = []{%- assign collection = collections['cymbiotika_bundle_recharge'] -%}{% for product in collection.products %}
+  let products = []
+  {%- assign collection = collections['cymbiotika_bundle_recharge'] -%}
+  {% for product in collection.products %}
     {%- assign lower = product.title | downcase -%}
     {% if product.tags contains 'merch' or lower contains 'preorder' or product.available == false  %}
       {% continue %}
-    {%endif%}products.push({
+    {%endif%}
+    products.push({
       tags: {{ product.tags | json }},
       url: "{{ product.url }}",
       handle: "{{ product.handle }}",
@@ -35,12 +38,23 @@
       productId: parseInt("{{ product.id }}"),
       variantId: parseInt("{{ product.variants[0].id }}"),
       title: `{{ product.title }}`
-    }){% endfor %}const imageDict = formatImageSources(imageSources);
+    })
+  {% endfor %}
+
+  const imageDict = formatImageSources(imageSources);
 
   products.forEach(p => p.image = imageDict[p.productId]);
 
 // console.log(‘products’, products)
-  let orders = []{% for order in customer.orders %}orders.push({created_at: "{{ order.created_at }}", line_items: {{ order.line_items | json }}}){% endfor %}if (orders.length > 2) {
+  let orders = []
+{% for order in customer.orders %}
+  orders.push({
+    created_at: "{{ order.created_at }}",
+    line_items: {{ order.line_items | json }}
+  })
+{% endfor %}
+
+if (orders.length > 2) {
     orders = orders.slice(0, 2)
   }
   orders.forEach(el => {
@@ -127,7 +141,7 @@
         src="https://cdn.shopify.com/s/files/1/1824/8017/files/10April-Arise_Logo_NoWordmark_white.png?v=1681187887"
         alt="Arise White Logo"
         class="mx-auto mb-5">
-      <h2 class="max-w-[600px] mb-10 mx-auto text-[12px] md:text-[14px] xl:text-[16px] font-[500] -tracking-[0.02em] leading-[1.4] ">
+      <h2 class="max-w-[600px] mb-10 mx-auto text-[12px] md:text-[16px] xl:text-[18px] font-[500] -tracking-[0.02em] leading-[1.6] font-mon">
         Get rewarded for elevating your well-being with Arise. <br class="hidden md:block" />
         Earn exclusive discounts, free shipping, free gifts, and more.
       </h2>
