@@ -295,7 +295,7 @@ if (orders.length > 2) {
 
         <!-- member card -->
         <div class="py-6 swiper-slide">
-          <div class="border border-[#909090] rounded-[5px]">
+          <div class="border border-[#909090] rounded-[5px] card_member">
             <div class="card_highlight border-b border-[#909090] py-2.5 text-center">
               <h6 class="text-xs leading-[1.4] -tracking-[0.02em] mb-0.5 uppercase text-[#003C34]">Member</h6>
               <p class="text-xs leading-[1.4] -tracking-[0.02em] italic text-[#767676]">1-2 months subscribed</p>
@@ -407,7 +407,7 @@ if (orders.length > 2) {
 
         <!-- insider card -->
         <div class="py-6 swiper-slide">
-          <div class="relative border border-[#909090] rounded-[5px]">
+          <div class="relative border border-[#909090] rounded-[5px] card_insider">
             <div class="card_highlight border-b border-[#909090] py-2.5 text-center">
               <h6 class="text-xs leading-[1.4] -tracking-[0.02em] mb-0.5 uppercase text-[#003C34]">Insider</h6>
               <p class="text-xs leading-[1.4] -tracking-[0.02em] italic text-[#767676]">3 months subscribed</p>
@@ -558,7 +558,7 @@ if (orders.length > 2) {
 
         <!-- elite card -->
         <div class="py-6 swiper-slide">
-          <div class="relative border border-[#909090] rounded-[5px]">
+          <div class="relative border border-[#909090] rounded-[5px] card_elite">
             <div class="card_highlight border-b border-[#909090] py-2.5 text-center">
               <h6 class="text-xs leading-[1.4] -tracking-[0.02em] mb-0.5 uppercase text-[#003C34]">ELITE</h6>
               <p class="text-xs leading-[1.4] -tracking-[0.02em] italic text-[#767676]">4-5 months subscribed</p>
@@ -744,7 +744,7 @@ if (orders.length > 2) {
 
         <!-- vip card -->
         <div class="py-6 swiper-slide">
-          <div class="relative border border-[#909090] rounded-[5px]">
+          <div class="relative border border-[#909090] rounded-[5px] card_vip">
             <div class="card_highlight border-b border-[#909090] py-2.5 text-center">
               <h6 class="text-xs leading-[1.4] -tracking-[0.02em] mb-0.5 uppercase text-[#003C34]">VIP</h6>
               <p class="text-xs leading-[1.4] -tracking-[0.02em] italic text-[#767676]">6+ months subscribed</p>
@@ -2422,16 +2422,16 @@ const allPrettyText = {
     background-color: #EFF2E1;
   }
 
-  .tier_highlight.member:nth-child(4n-2) .card_highlight {
+  .tier_highlight.member .card_member .card_highlight {
     background-color: #DFE4C3;
   }
-  .tier_highlight.insider:nth-child(4n-1) .card_highlight {
+  .tier_highlight.insider .card_insider .card_highlight {
     background-color: #DFE4C3;
   }
-  .tier_highlight.elite:nth-child(4n-4) .card_highlight {
+  .tier_highlight.elite .card_elite .card_highlight {
     background-color: #DFE4C3;
   }
-  .tier_highlight.vip:nth-child(4n-3) .card_highlight {
+  .tier_highlight.vip .card_vip .card_highlight {
     background-color: #DFE4C3;
   }
 
